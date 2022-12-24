@@ -34,8 +34,10 @@ INSTALLED_APPS = (
     # 3rd part apps
     'rest_framework',
     'rest_framework.authtoken',
+    'djoser',
 
     # Project apps
+    'backend.api',
 )
 
 MIDDLEWARE = [
@@ -77,8 +79,8 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # AUTH_USER_MODEL = 'accounts.CustomUser'
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/home'
+# LOGIN_URL = '/accounts/login/'
+# LOGIN_REDIRECT_URL = '/home'
 
 # Sessions
 # ---------------------------------------------------------
@@ -133,6 +135,16 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     )
+}
+
+# Djoser
+# ---------------------------------------------------------
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SERIALIZERS': {},
 }
 
 # =========================================================

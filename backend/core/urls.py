@@ -21,7 +21,7 @@ admin.autodiscover()
 
 urlpatterns = [
     path(settings.ADMIN_URL_PATH, admin.site.urls),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/v1/', include('backend.api.urls')),
 ]
 
 if settings.DEBUG and 'debug_toolbar' in settings.INSTALLED_APPS:
@@ -30,10 +30,3 @@ if settings.DEBUG and 'debug_toolbar' in settings.INSTALLED_APPS:
     urlpatterns = [
                       path('__debug__/', include(debug_toolbar.urls)),
                   ] + urlpatterns
-
-# urlpatterns = [
-#     path('accounts/', include('gateway.accounts.urls')),
-#     path('', include('gateway.api.urls')),
-#     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-#
-# ]
