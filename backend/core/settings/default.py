@@ -38,6 +38,7 @@ INSTALLED_APPS = (
 
     # Project apps
     'backend.api',
+    'backend.web',
 )
 
 MIDDLEWARE = [
