@@ -1,17 +1,17 @@
 version: '3.9'
 
 services:
-  backend:
-    container_name: backend
-    build:
-      context: .
-      dockerfile: scripts/docker/dev/Dockerfile
-    volumes:
-      - ./backend:/sms-gateway/backend
-    ports:
-      - "9000:9000"
-    depends_on:
-      - db
+#  backend:
+#    container_name: backend
+#    build:
+#      context: .
+#      dockerfile: scripts/docker/dev/Dockerfile
+#    volumes:
+#      - ./backend:/sms-gateway/backend
+#    ports:
+#      - "9000:9000"
+#    depends_on:
+#      - db
   db:
     container_name: pg_db
     image: postgres:14-alpine
@@ -23,14 +23,14 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     ports:
       - "5432:5432"
-  pgAdmin:
-    container_name: pg_admin
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: postgres@postgres.postgres
-      PGADMIN_DEFAULT_PASSWORD: postgres
-    ports:
-      - "5433:80"
+#  pgAdmin:
+#    container_name: pg_admin
+#    image: dpage/pgadmin4
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: postgres@postgres.postgres
+#      PGADMIN_DEFAULT_PASSWORD: postgres
+#    ports:
+#      - "5433:80"
 
 volumes:
   postgres_data:
