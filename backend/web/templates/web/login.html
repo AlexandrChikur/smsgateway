@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Авторизация
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-4">Авторизация</h1>
+    <div class="col-8">
+        <form action="{% url 'url_login' %}" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group mb-3">
+                    {{ field.label }}
+                    {{ field }}
+                </div>
+            {% endfor %}
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger mt-3">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            Еще нет аккаунта ? <a href="{% url 'url_signup' %}" class="link-primary text-decoration-none">Зарегистрируйтесь!</a><br>
+            <button type="submit" class="btn btn-primary mt-3">Войти</button>
+        </form>
+    </div>
+{% endblock %}

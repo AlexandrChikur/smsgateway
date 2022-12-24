@@ -1,0 +1,63 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static '/images/favicon-32x32.png' %}"/>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+            integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+            crossorigin="anonymous"></script>
+    <title>SMSGateway - {% block title %}{% endblock %}
+    </title>
+</head>
+<body>
+<header class="d-flex flex-wrap align-items-center justify-content-center py-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+        <img src="{% static 'images/logo.png' %}" alt="" width="300">
+    </a>
+
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li class="nav-item dropdown">
+            {% if user.is_authenticated %}
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Сообщения
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Создать сообщение</a>
+                    <a class="dropdown-item" href="#">Созданные сообщения</a>
+                </div>
+            {% endif %}
+        </li>
+    </ul>
+
+    <div class="col-md-3 text-end">
+        {% if user.is_authenticated %}
+            Привет, {{ user }}
+            <a href="{% url 'url_logout' %}" class="btn btn-outline-dark me-2 mr-4">Выйти</a>
+        {% else %}
+            <a href="{% url 'url_login' %}" type="button" class="btn btn-outline-dark me-2">Войти</a>
+            <a href="{% url 'url_signup' %}" type="button" class="btn btn-dark">Регистрация</a>
+        {% endif %}
+
+    </div>
+</header>
+<content class="container">
+    <div class="row">
+        <div class="col-lg-5 offset-md-3">
+            {% block content %}
+                Главная страница SMSGateway Service.
+            {% endblock %}
+        </div>
+    </div>
+</content>
+
+</body>
+</html>

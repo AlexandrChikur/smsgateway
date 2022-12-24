@@ -81,7 +81,25 @@ AUTHENTICATION_BACKENDS = (
 
 # AUTH_USER_MODEL = 'accounts.CustomUser'
 # LOGIN_URL = '/accounts/login/'
-# LOGIN_REDIRECT_URL = '/home'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        'OPTIONS': {
+            'min_length': 6,
+        }
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
+]
+
+
 
 # Sessions
 # ---------------------------------------------------------
@@ -99,7 +117,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Internationalization
 # ---------------------------------------------------------
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 USE_L10N = True
@@ -109,6 +127,7 @@ USE_TZ = True
 # ---------------------------------------------------------
 
 STATIC_URL = "/static/"
+MEDIA_URL = "/media/"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/'),
 ]
@@ -145,6 +164,9 @@ DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'PERMISSIONS': {
+            "user_create": ["rest_framework.permissions.IsAdmin"],
+    },
     'SERIALIZERS': {},
 }
 
