@@ -20,13 +20,12 @@ from django.urls import path, include
 admin.autodiscover()
 
 urlpatterns = [
-    path(settings.ADMIN_URL_PATH, admin.site.urls),
-    path('api/v1/', include('backend.api.urls')),
+    path('', include('backend.web.urls'), name='url_mainpage'),
+    path(settings.ADMIN_URL_PATH, admin.site.urls, name='url_adminpage'),
+    path('api/v1/', include('backend.api.urls'), name='url_api'),
 ]
 
 if settings.DEBUG and 'debug_toolbar' in settings.INSTALLED_APPS:
     import debug_toolbar
 
-    urlpatterns = [
-                      path('__debug__/', include(debug_toolbar.urls)),
-                  ] + urlpatterns
+    urlpatterns = [path('__debug__/', include(debug_toolbar.urls)), ] + urlpatterns
