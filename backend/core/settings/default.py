@@ -172,6 +172,15 @@ DJOSER = {
     'SERIALIZERS': {},
 }
 
+# Swagger
+# ---------------------------------------------------------
+
+SWAGGER_SETTINGS = {
+    'LOGIN_URL': "/api/v1/api-auth/login/?next=/api/v1/swagger/",
+    'LOGOUT_URL': "/api/v1/api-auth/logout/?next=/api/v1/swagger/",
+    'validatorUrl': None,
+}
+
 # =========================================================
 # Logging Settings
 # =========================================================
