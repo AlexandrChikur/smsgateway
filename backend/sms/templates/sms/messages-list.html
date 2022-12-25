@@ -25,7 +25,7 @@
 
             <ul class="list-group list-group-flush">
                 {% for phone in message.send_to %}
-                <li class="list-group-item">{{ phone | phonenumber_format }}</li>
+                    <li class="list-group-item">{{ phone | phonenumber_format }}</li>
                 {% endfor %}
             </ul>
         </div>

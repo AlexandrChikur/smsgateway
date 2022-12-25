@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load phonetags %}
+
+{% block title %}
+    Новое сообщение
+{% endblock %}
+
+
+{% block content %}
+    <h1 class="mt-4">Создание нового сообщения</h1>
+    <div class="col-8">
+        <form action="{% url 'url_message_add' %}" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group mb-3">
+                    {{ field.label }}
+                    {{ field }}
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger mt-4">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger mt-4">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Создать</button>
+        </form>
+    </div>
+
+
+{% endblock %}

@@ -44,7 +44,6 @@ DATABASES = {
     }
 }
 
-
 # Debug Toolbar
 # ---------------------------------------------------------
 DEBUG_TOOLBAR_PATCH_SETTINGS = False

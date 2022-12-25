@@ -1,15 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
-from django.contrib.auth.password_validation import  validate_password
+from django.contrib.auth.password_validation import validate_password
 
-
-class BaseStyledForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields:
-            self.fields[field].widget.attrs['class'] = 'form-control'
+from backend.core.forms import BaseStyledForm
 
 
 class LoginUserForm(AuthenticationForm, BaseStyledForm):
@@ -21,7 +15,7 @@ class LoginUserForm(AuthenticationForm, BaseStyledForm):
 class SignupUserForm(BaseStyledForm):
     password = forms.CharField(label="Пароль", widget=forms.PasswordInput())
     confirm_password = forms.CharField(label="Введите пароль еще раз", widget=forms.PasswordInput())
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"placeholder": "Необязательно"}),required=False)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={"placeholder": "Необязательно"}), required=False)
 
     class Meta:
         model = User

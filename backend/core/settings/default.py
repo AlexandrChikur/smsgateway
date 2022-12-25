@@ -122,7 +122,8 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-DEFAULT_PHONE_REGION = os.environ.get('BACKEND_PHONE_REGION', 'ru')
+DEFAULT_PHONE_REGION = os.environ.get('BACKEND_PHONE_REGION', 'RU')
+
 # Static files
 # ---------------------------------------------------------
 

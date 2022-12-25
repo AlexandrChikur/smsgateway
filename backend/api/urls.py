@@ -1,5 +1,5 @@
-from django.urls import path, include
-
+from django.urls import include
+from django.urls import path
 
 urlpatterns = [
     path('auth/', include('djoser.urls')),
