@@ -21,6 +21,7 @@ admin.autodiscover()
 
 urlpatterns = [
     path('', include('backend.web.urls'), name='url_mainpage'),
+
     path(settings.ADMIN_URL_PATH, admin.site.urls, name='url_adminpage'),
     path('api/v1/', include('backend.api.urls'), name='url_api'),
 ]

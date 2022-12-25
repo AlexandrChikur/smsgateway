@@ -8,7 +8,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static '/images/favicon-32x32.png' %}"/>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
@@ -31,8 +31,9 @@
                     Сообщения
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Создать сообщение</a>
-                    <a class="dropdown-item" href="#">Созданные сообщения</a>
+                    <a class="dropdown-item" href="{% url 'url_messages_list' %}">Все</a>
+                    <a class="dropdown-item" href="{% url 'url_message_add' %}">Создать новое</a>
+
                 </div>
             {% endif %}
         </li>

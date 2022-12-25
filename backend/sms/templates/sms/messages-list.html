@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load phonetags %}
+
+{% block title %}
+    Мои сообщения
+{% endblock %}
+
+
+{% block content %}
+    <h1 class="mt-4">Мои сообщения</h1>
+    {% for message in messages %}
+        <div class="card mt-3">
+            <div class="card-header d-flex justify-content-between">
+                {% if message.is_sent %}
+                    <span class="text-success">Разослано</span>
+                {% else %}
+                    <span class="text-warning">Не разослано</span>
+                {% endif %}
+                <div>Создано {{ message.created_at }}</div>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Сообщение: </h5>
+                <p class="card-text">{{ message.text }}</p>
+            </div>
+
+            <ul class="list-group list-group-flush">
+                {% for phone in message.send_to %}
+                <li class="list-group-item">{{ phone | phonenumber_format }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+    <div class="pagination justify-content-center mt-5">
+        {% include 'pagination.html' %}
+    </div>
+
+
+{% endblock %}
