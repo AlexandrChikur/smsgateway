@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.postgres.forms import SimpleArrayField
 
-from backend.core.forms import BaseStyledForm
+from core.forms import BaseStyledForm
 from .models import Message
 
 

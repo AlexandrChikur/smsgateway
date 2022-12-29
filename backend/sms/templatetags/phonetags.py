@@ -1,6 +1,6 @@
 from django import template
 
-from backend.sms.utils import format_phonenumber
+from sms.utils import format_phonenumber
 
 register = template.Library()
 

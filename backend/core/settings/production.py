@@ -54,6 +54,9 @@ else:
 # ---------------------------------------------------------
 
 STATIC_ROOT = '/usr/share/sms-gateway/public/static'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Security
 # ---------------------------------------------------------

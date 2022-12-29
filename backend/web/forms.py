@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 
-from backend.core.forms import BaseStyledForm
+from core.forms import BaseStyledForm
 
 
 class LoginUserForm(AuthenticationForm, BaseStyledForm):

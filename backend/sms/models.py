@@ -26,7 +26,6 @@ class Message(models.Model):
         if self.send_to:
             for idx, phone in enumerate(self.send_to):
                 validate_phone_number(phone)
-                print(idx, format_phonenumber(phone))
                 self.send_to.__setitem__(idx, format_phonenumber(phone))
 
     def save(self, *args, **kwargs):

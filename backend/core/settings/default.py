@@ -34,16 +34,20 @@ INSTALLED_APPS = (
     # 3rd part apps
     'rest_framework',
     'rest_framework.authtoken',
+    'channels',
     'drf_yasg',
     'djoser',
 
     # Project apps
-    'backend.api',
-    'backend.web',
-    'backend.sms',
+    'api',
+    'web',
+    'sms',
+
 )
 
 MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -128,6 +132,7 @@ DEFAULT_PHONE_REGION = os.environ.get('BACKEND_PHONE_REGION', 'RU')
 # Static files
 # ---------------------------------------------------------
 
+
 STATIC_URL = "/static/"
 MEDIA_URL = "/media/"
 STATICFILES_DIRS = [
@@ -156,7 +161,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-    )
+    ),
+    'EXCEPTION_HANDLER': 'core.drf.exception_handler',
 }
 
 # Djoser
@@ -179,6 +185,20 @@ SWAGGER_SETTINGS = {
     'LOGIN_URL': "/api/v1/api-auth/login/?next=/api/v1/swagger/",
     'LOGOUT_URL': "/api/v1/api-auth/logout/?next=/api/v1/swagger/",
     'validatorUrl': None,
+}
+
+# Channels
+# ---------------------------------------------------------
+
+ASGI_APPLICATION = "core.asgi.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+            "symmetric_encryption_keys": [SECRET_KEY],
+        },
+    },
 }
 
 # =========================================================

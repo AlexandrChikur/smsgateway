@@ -25,7 +25,8 @@ run_migrations() {
 }
 
 run_api() {
-    "${VENV_EXEC}" backend/manage.py runserver "0.0.0.0:$DJANGO_PORT"
+  # TODO: Exec from backend folder. Also fix prod entrypoint.
+    "${VENV_EXEC}" uvicorn core.asgi:application --host 0.0.0.0 --port $DJANGO_PORT
 }
 
 wait_postgres
