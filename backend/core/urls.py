@@ -22,10 +22,10 @@ Including another URLconf
 
 
 from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
-
 
 admin.autodiscover()
 
@@ -34,6 +34,9 @@ urlpatterns = [
     path(settings.ADMIN_URL_PATH, admin.site.urls, name='url_adminpage'),
     path('api/v1/', include('api.urls'), name='url_api'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG and 'debug_toolbar' in settings.INSTALLED_APPS:
     import debug_toolbar

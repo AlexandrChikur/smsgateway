@@ -151,13 +151,7 @@ DATABASES = {
     }
 }
 
-CACHES = {
-    "default": {
-        "BACKEND": "redis_cache.RedisCache",
-        "LOCATION": os.getenv("BACKEND_REDIS_URL",
-                              (os.getenv("BACKEND_REDIS_HOST", '127.0.0.1'), os.getenv("BACKEND_REDIS_PORT", 6379))),
-    }
-}
+
 
 # =========================================================
 # Third Party Apps Settings

@@ -1,5 +1,3 @@
-import os
-
 import dj_database_url
 
 from .default import *  # noqa
@@ -56,7 +54,7 @@ else:
 # Static files
 # ---------------------------------------------------------
 
-STATIC_ROOT = '/usr/share/sms-gateway/public/static'
+STATIC_ROOT = BASE_DIR / "staticfiles_build" / "static"  # '/usr/share/sms-gateway/public/static' if nginx required
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
@@ -75,13 +73,6 @@ SITE_ENV = 'PROD'
 # =========================================================
 # Logging Settings
 # =========================================================
-
-LOGGING['handlers']['console'] = {
-    'level': 'INFO',
-    'class': 'logging.StreamHandler',
-    'filters': ['request_id'],
-    'formatter': 'json',
-}
 
 LOGGING['loggers']['backend'] = {
     'level': 'WARNING',

@@ -15,7 +15,7 @@ wait_postgres() {
 
 wait_redis() {
   echo "Waiting for redis..."
-  while ! nc -z $REDIS_HOST $REDIS_PORT; do
+  while ! nc -z $BACKEND_REDIS_HOST $BACKEND_REDIS_PORT; do
     sleep 0.1
   done
   echo "Redis started"
