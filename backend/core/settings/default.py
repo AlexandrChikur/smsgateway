@@ -10,9 +10,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 DEBUG = False
 SITE_ID = 1
 ALLOWED_HOSTS = ["*"]
-ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
-)
+ADMINS = [
+    # "name:password"
+    "achikur:Aa12345",
+]
 
 ADMIN_URL_KEY = os.environ.get('BACKEND_ADMIN_PATH', 'admin')
 ADMIN_URL_PATH = '{}/'.format(ADMIN_URL_KEY)
@@ -39,6 +40,7 @@ INSTALLED_APPS = (
     'djoser',
 
     # Project apps
+    'accounts',
     'api',
     'web',
     'sms',
@@ -149,6 +151,14 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    "default": {
+        "BACKEND": "redis_cache.RedisCache",
+        "LOCATION": os.getenv("BACKEND_REDIS_URL",
+                              (os.getenv("BACKEND_REDIS_HOST", '127.0.0.1'), os.getenv("BACKEND_REDIS_PORT", 6379))),
+    }
+}
+
 # =========================================================
 # Third Party Apps Settings
 # =========================================================
@@ -195,7 +205,8 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [os.getenv("BACKEND_REDIS_URL",
+                                (os.getenv("BACKEND_REDIS_HOST", '127.0.0.1'), os.getenv("BACKEND_REDIS_PORT", 6379)))],
             "symmetric_encryption_keys": [SECRET_KEY],
         },
     },

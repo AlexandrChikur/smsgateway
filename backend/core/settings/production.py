@@ -1,3 +1,5 @@
+import os
+
 import dj_database_url
 
 from .default import *  # noqa
@@ -30,6 +32,7 @@ def _read_secret_key(settings_dir='/etc/sms-gateway/backend'):
 
 DEBUG = False
 ALLOWED_HOSTS = os.environ.get('BACKEND_ALLOWED_HOSTS', '*').split(',')
+ADMINS = os.getenv("BACKEND_ADMINS", '').split(',')  # Provided as comma separated `name:pwd` string
 
 # Database
 # ---------------------------------------------------------

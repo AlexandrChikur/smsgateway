@@ -1,17 +1,22 @@
 version: '3.9'
 
 services:
-#  backend:
-#    container_name: backend
-#    build:
-#      context: .
-#      dockerfile: scripts/docker/dev/Dockerfile
-#    volumes:
-#      - ./backend:/sms-gateway/backend
-#    ports:
-#      - "9000:9000"
-#    depends_on:
-#      - db
+  backend:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: scripts/docker/dev/Dockerfile
+    volumes:
+      - ./backend:/sms-gateway/backend
+    ports:
+      - "9000:9000"
+    depends_on:
+      - db
+      - redis
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
   db:
     container_name: pg_db
     image: postgres:14-alpine

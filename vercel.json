@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "builds": [
+    {
+     "src": "core/asgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.10"
+      }
+    },
+    {
+      "src": "scripts/prod/entrypoint.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "/usr/share/sms-gateway/public/static"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "core/asgi.py"
+    }
+  ]
+}
