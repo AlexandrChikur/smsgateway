@@ -3,8 +3,7 @@
 set -o errexit
 set -o nounset
 
-
-readonly VENV_EXEC=.venv/bin/python3.10
+readonly VENV_EXEC=python3.10
 
 wait_postgres() {
   echo "Waiting for postgres..."
@@ -20,6 +19,11 @@ wait_redis() {
     sleep 0.1
   done
   echo "Redis started"
+}
+
+run_install_requirements(){
+  echo "Installing requirements..."
+  "${VENV_EXEC}" -m pip install -r requirements.txt
 }
 
 run_create_admin() {
@@ -49,6 +53,7 @@ run_api() {
 
 wait_postgres
 wait_redis
+run_install_requirements
 run_makemigrations
 run_migrations
 run_create_admin

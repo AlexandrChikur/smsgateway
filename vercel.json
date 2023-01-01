@@ -10,7 +10,7 @@
       }
     },
     {
-      "src": "scripts/prod/entrypoint.sh",
+      "src": "scripts/prod/vercel.sh",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "/usr/share/sms-gateway/public/static"
