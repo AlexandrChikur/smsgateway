@@ -54,7 +54,7 @@ else:
 # Static files
 # ---------------------------------------------------------
 
-STATIC_ROOT = BASE_DIR / "staticfiles_build" / "static"  # '/usr/share/sms-gateway/public/static' if nginx required
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')  # '/usr/share/sms-gateway/public/static' if nginx required
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
